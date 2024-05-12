@@ -1,3 +1,4 @@
+//
 package com.example.taskmaster
 
 import android.app.Dialog
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             clearEditText(addETDesc, addETDescL)
             taskAddDialog.show()
         }
-
+//save
         val saveTaskBtn = taskAddDialog.findViewById<Button>(R.id.saveTaskBtn)
         saveTaskBtn.setOnClickListener {
             if (validateEditText(addETTitle, addETTitleL) && validateEditText(addETDesc, addETDescL)) {
@@ -223,29 +224,30 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+
     private fun callGetTaskList(taskRecyclerViewAdapter: TaskRVVBListAdapter) {
         CoroutineScope(Dispatchers.Main).launch {
             taskViewModel
                 .taskStateFlow
                 .collectLatest {
-                when (it.status) {
-                    Status.LOADING -> {
-                        loadingDialog.show()
-                    }
+                    when (it.status) {
+                        Status.LOADING -> {
+                            loadingDialog.show()
+                        }
 
-                    Status.SUCCESS -> {
-                        loadingDialog.dismiss()
-                        it.data?.collect {taskList->
-                            taskRecyclerViewAdapter.submitList(taskList)
+                        Status.SUCCESS -> {
+                            loadingDialog.dismiss()
+                            it.data?.collect {taskList->
+                                taskRecyclerViewAdapter.submitList(taskList)
+                            }
+                        }
+
+                        Status.ERROR -> {
+                            loadingDialog.dismiss()
+                            it.message?.let { it1 -> longToastShow(it1) }
                         }
                     }
-
-                    Status.ERROR -> {
-                        loadingDialog.dismiss()
-                        it.message?.let { it1 -> longToastShow(it1) }
-                    }
                 }
-            }
         }
     }
 }
