@@ -20,7 +20,8 @@ class TaskRVVBListAdapter(
 ):
     ListAdapter<Task,TaskRVVBListAdapter.ViewHolder>(DiffCallback()){
 
-    class ViewHolder(val taskRecyclerViewAdapter: TaskViewLayoutBinding):
+    // ViewHolder class to hold the views
+        class ViewHolder(val taskRecyclerViewAdapter: TaskViewLayoutBinding):
         RecyclerView.ViewHolder(taskRecyclerViewAdapter.root)
 
 
@@ -32,6 +33,8 @@ class TaskRVVBListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val task = getItem(position)
+
+        // Bind data to the views in the ViewHolder
 
         holder.taskRecyclerViewAdapter.titleTxt.text = task.title
         holder.taskRecyclerViewAdapter.descrTxt.text = task.description
@@ -55,6 +58,7 @@ class TaskRVVBListAdapter(
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Task>(){
+        // Check if the item ids are the same
         override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem.id == newItem.id
         }
