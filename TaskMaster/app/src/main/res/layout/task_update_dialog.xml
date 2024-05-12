@@ -8,10 +8,12 @@
     style="@style/cardViewStyle"
     app:cardElevation="10dp">
 
+    <!-- Main layout for updating a task -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Title text for the update task card -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
@@ -21,6 +23,7 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
+        <!-- Close button icon -->
         <ImageView
             android:id="@+id/closeImg"
             android:layout_width="40dp"
@@ -29,13 +32,15 @@
             android:layout_margin="8dp"
             android:layout_alignParentEnd="true"/>
 
+        <!-- Horizontal line below the title -->
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_below="@+id/titleText"
             android:background="@color/blue"
             android:id="@+id/viewHLine"/>
-        
+
+        <!-- Content layout with task update fields -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +50,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_centerHorizontal="true">
 
-
+            <!-- Input field for updated task title -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
@@ -62,6 +67,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Input field for updated task description -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
@@ -81,6 +87,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Button for updating the task -->
             <Button
                 android:id="@+id/updateTaskBtn"
                 android:layout_width="wrap_content"
